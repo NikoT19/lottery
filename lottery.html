@@ -1,1 +1,93 @@
-!
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Проверка Лотерейных Билетов</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 700px;
+            margin: auto;
+            text-align: center;
+        }
+        input {
+            margin: 5px;
+            padding: 10px;
+            font-size: 16px;
+            width: 80%;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        .list {
+            margin-top: 20px;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            margin-top: 10px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Проверка Лотерейных Билетов</h1>
+
+        <!-- Ввод списка своих билетов -->
+        <h3>Введите ваши билеты (по одному на строку):</h3>
+        <textarea id="myTickets" placeholder="Введите ваши билеты"></textarea>
+
+        <!-- Ввод списка выигрышных билетов -->
+        <h3>Введите выигрышные комбинации (по одному на строку, максимум 10):</h3>
+        <textarea id="winningTickets" placeholder="Введите выигрышные комбинации"></textarea>
+        
+        <!-- Кнопка проверки -->
+        <button onclick="checkWinningTickets()">Проверить билеты</button>
+
+        <!-- Результаты -->
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        // Функция для проверки совпадений между вашими билетами и выигрышными комбинациями
+        function checkWinningTickets() {
+            const myTickets = document.getElementById('myTickets').value.trim().split('\n');
+            const winningTickets = document.getElementById('winningTickets').value.trim().split('\n');
+
+            // Ограничение на количество выигрышных комбинаций
+            if (winningTickets.length > 10) {
+                alert("Максимальное количество выигрышных комбинаций — 10.");
+                return;
+            }
+
+            // Убираем пробелы и лишние символы
+            const myTicketsCleaned = myTickets.map(ticket => ticket.trim());
+            const winningTicketsCleaned = winningTickets.map(ticket => ticket.trim());
+
+            // Найти совпадения
+            const matches = myTicketsCleaned.filter(ticket => winningTicketsCleaned.includes(ticket));
+
+            // Показать результаты
+            const resultDiv = document.getElementById('result');
+            if (matches.length > 0) {
+                resultDiv.innerHTML = `Выигрышные билеты: <br>${matches.join('<br>')}`;
+                resultDiv.style.color = "green";
+            } else {
+                resultDiv.textContent = "К сожалению, совпадений нет.";
+                resultDiv.style.color = "red";
+            }
+        }
+    </script>
+</body>
+</html>
