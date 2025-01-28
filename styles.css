@@ -1,8 +1,6 @@
 body {
   font-family: Arial, sans-serif;
-  line-height: 1.6;
-  background-color: #f4f4f9;
-  color: #333;
+  background-color: #f8f9fa;
   margin: 0;
   padding: 20px;
 }
@@ -10,56 +8,55 @@ body {
 .container {
   max-width: 600px;
   margin: 0 auto;
-  background: #fff;
+  background: #ffffff;
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
   text-align: center;
+  color: #333;
 }
 
 .section {
   margin-bottom: 20px;
 }
 
-input {
+.section h2 {
+  color: #555;
+}
+
+#ticket-fields, #winning-fields {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+input[type="text"] {
   width: 100%;
+  max-width: 200px;
   padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #ddd;
+  border: 1px solid #ccc;
   border-radius: 4px;
-  font-size: 16px;
 }
 
 button {
-  background: #007bff;
-  color: #fff;
+  background-color: #007bff;
+  color: white;
   border: none;
-  padding: 10px 15px;
+  padding: 10px 20px;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 16px;
+  margin-top: 10px;
 }
 
 button:hover {
-  background: #0056b3;
+  background-color: #0056b3;
 }
 
-#result {
+#results {
   margin-top: 20px;
-}
-
-#matches-list {
-  list-style-type: none;
-  padding: 0;
-}
-
-#matches-list li {
-  background: #d4edda;
-  color: #155724;
-  margin: 5px 0;
-  padding: 10px;
-  border-radius: 4px;
+  font-size: 1.2em;
+  color: green;
 }
