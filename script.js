@@ -1,14 +1,21 @@
-// Получение элементов
-const ticketFields = document.getElementById('ticket-fields');
-const winningFields = document.getElementById('winning-fields');
-const addTicketBtn = document.getElementById('add-ticket');
-const addWinningTicketBtn = document.getElementById('add-winning-ticket');
-const checkTicketsBtn = document.getElementById('check-tickets');
-const matchesList = document.getElementById('matches-list');
+// Константы
+const maxTickets = 100;
+const maxWinningTickets = 100;
 
-// Добавление поля для билетов
+// Элементы DOM
+const ticketFields = document.getElementById('ticket-fields');
+const addTicketBtn = document.getElementById('add-ticket-btn');
+const winningFields = document.getElementById('winning-fields');
+const addWinningTicketBtn = document.getElementById('add-winning-ticket-btn');
+const checkBtn = document.getElementById('check-btn');
+const clearBtn = document.getElementById('clear-btn');
+const resultsDiv = document.getElementById('results');
+
+// Добавить билет
 addTicketBtn.addEventListener('click', () => {
-  if (ticketFields.children.length < 100) {
+  const currentTickets = document.querySelectorAll('.ticket').length;
+
+  if (currentTickets < maxTickets) {
     const input = document.createElement('input');
     input.type = 'text';
     input.className = 'ticket';
@@ -16,13 +23,15 @@ addTicketBtn.addEventListener('click', () => {
     input.maxLength = 9;
     ticketFields.appendChild(input);
   } else {
-    alert('Вы можете добавить не более 100 билетов.');
+    alert(`Вы не можете добавить больше ${maxTickets} билетов.`);
   }
 });
 
-// Добавление поля для выигрышных билетов
+// Добавить выигрышный билет
 addWinningTicketBtn.addEventListener('click', () => {
-  if (winningFields.children.length < 10) {
+  const currentWinningTickets = document.querySelectorAll('.winning-ticket').length;
+
+  if (currentWinningTickets < maxWinningTickets) {
     const input = document.createElement('input');
     input.type = 'text';
     input.className = 'winning-ticket';
@@ -30,26 +39,29 @@ addWinningTicketBtn.addEventListener('click', () => {
     input.maxLength = 9;
     winningFields.appendChild(input);
   } else {
-    alert('Вы можете добавить не более 10 выигрышных билетов.');
+    alert(`Вы не можете добавить больше ${maxWinningTickets} выигрышных билетов.`);
   }
 });
 
-// Проверка билетов
-checkTicketsBtn.addEventListener('click', () => {
+// Проверить билеты
+checkBtn.addEventListener('click', () => {
+  resultsDiv.innerHTML = ''; // Очистить предыдущие результаты
+
   const tickets = Array.from(document.querySelectorAll('.ticket')).map(input => input.value.trim());
   const winningTickets = Array.from(document.querySelectorAll('.winning-ticket')).map(input => input.value.trim());
 
-  const matches = tickets.filter(ticket => ticket && winningTickets.includes(ticket));
+  const matches = tickets.filter(ticket => winningTickets.includes(ticket));
 
-  matchesList.innerHTML = '';
   if (matches.length > 0) {
-    matches.forEach(match => {
-      const li = document.createElement('li');
-      li.textContent = match;
-      matchesList.appendChild(li);
-    });
+    resultsDiv.innerHTML = `Совпадения найдены: ${matches.join(', ')}`;
   } else {
-    matchesList.innerHTML = '<li>Совпадений не найдено.</li>';
+    resultsDiv.innerHTML = 'Совпадений не найдено.';
   }
 });
 
+// Очистить все
+clearBtn.addEventListener('click', () => {
+  ticketFields.innerHTML = '<input type="text" class="ticket" placeholder="Введите номер билета" maxlength="9">';
+  winningFields.innerHTML = '<input type="text" class="winning-ticket" placeholder="Введите номер выигрыша" maxlength="9">';
+  resultsDiv.innerHTML = '';
+});
